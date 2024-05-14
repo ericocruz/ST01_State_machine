@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <DUT Name="E_MachineStates" Id="{55e62de4-84f0-4de8-b10f-433b48da9bae}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+{attribute 'strict'}
+TYPE E_MachineStates :
+(
+	//init, pick, place, inspect
+	
+	init 	:= 100,
+	pick	:= 200,
+	place	:= 300,
+	inspect	:= 400
+);
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

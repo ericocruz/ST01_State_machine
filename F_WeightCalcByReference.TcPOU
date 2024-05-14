@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="F_WeightCalcByReference" Id="{34a29e32-8506-4957-8208-2f8d1324afa5}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION F_WeightCalcByReference : real
+VAR_INPUT
+	candle	: REFERENCE TO ST_Candle;
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF candle.dia = 0 THEN
+	RETURN;
+END_IF
+
+candle.weight := candle.dia*pi*candle.height;]]></ST>
+    </Implementation>
+    <LineIds Name="F_WeightCalcByReference">
+      <LineId Id="9" Count="0" />
+      <LineId Id="11" Count="1" />
+      <LineId Id="10" Count="0" />
+      <LineId Id="7" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="FB_Candle" Id="{06c667fb-2378-4630-8022-0be5e9be0cd6}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_Candle
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	dia			: REAL;
+	height 		: REAL;
+	numWicks 	: INT;
+	weight 		: REAL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <LineIds Name="FB_Candle">
+      <LineId Id="9" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

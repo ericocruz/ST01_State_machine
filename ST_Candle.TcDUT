@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <DUT Name="ST_Candle" Id="{e7e915a0-ba52-49f3-bd14-5126f3ee3ad9}">
+    <Declaration><![CDATA[TYPE ST_Candle :
+STRUCT
+	dia			: REAL;
+	height 		: REAL;
+	numWicks 	: INT;
+	weight 		: REAL;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

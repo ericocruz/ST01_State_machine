@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="edgeneg" Id="{9678accc-1061-4c06-b19f-5f237a6e99c0}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK edgeneg
+VAR_INPUT
+	IN	: BOOL;
+END_VAR
+VAR_OUTPUT
+	Q	: BOOL;
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <LineIds Name="edgeneg">
+      <LineId Id="9" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

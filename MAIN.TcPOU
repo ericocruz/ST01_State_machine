@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="MAIN" Id="{cdbbbc71-3dd8-48a4-bcb5-7febaf611fb5}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM MAIN
+VAR
+	test2: BOOL;
+	
+	candle1	: ST_Candle;
+	candle2	: ST_Candle;
+	aCandles	: ARRAY[1..4, 1..4] OF ST_Candle;
+	
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+Case_Chase();
+gvl.timer1sec;
+
+candle1.dia := 2.3;
+candle1.height := 4;
+aCandles;
+
+
+candle1.weight := F_WeightCalc(dia:= candle1.dia, height:= candle1.height);
+
+F_WeightCalcByReference(candle1);
+]]></ST>
+    </Implementation>
+    <LineIds Name="MAIN">
+      <LineId Id="15" Count="0" />
+      <LineId Id="12" Count="0" />
+      <LineId Id="16" Count="0" />
+      <LineId Id="21" Count="0" />
+      <LineId Id="18" Count="0" />
+      <LineId Id="28" Count="0" />
+      <LineId Id="24" Count="0" />
+      <LineId Id="27" Count="0" />
+      <LineId Id="26" Count="0" />
+      <LineId Id="25" Count="0" />
+      <LineId Id="30" Count="0" />
+      <LineId Id="29" Count="0" />
+      <LineId Id="22" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

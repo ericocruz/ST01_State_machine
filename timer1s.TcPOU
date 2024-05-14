@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="timer1s" Id="{33517a13-91ab-46a7-9013-31406b7cb4ca}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM timer1s
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[gvl.timer1sec := NOT(gvl.timer1sec);
+
+]]></ST>
+    </Implementation>
+    <LineIds Name="timer1s">
+      <LineId Id="5" Count="0" />
+      <LineId Id="7" Count="0" />
+      <LineId Id="6" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

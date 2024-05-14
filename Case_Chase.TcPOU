@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="Case_Chase" Id="{7e83de00-39e6-4566-b7d3-8ee3cda11e37}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM Case_Chase
+VAR
+	iState: E_MachineStates := E_MachineStates.init;
+	ton1			: TON;
+	ton2			: TON;
+	edgepos			: R_TRIG;
+	switchCounter	: UINT := 0;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[//CASE iState OF
+//	E_MachineStates.init:
+//		GVL.aLights[1] := TRUE;
+//		IF GVL.aSwitches[2] THEN
+//			iState := E_MachineStates.pick; 
+//			GVL.aLights[1] := FALSE;
+//		END_IF
+		
+//	E_MachineStates.pick:
+//		GVL.aLights[2] := TRUE;
+//		IF GVL.aSwitches[3] THEN
+//			iState := E_MachineStates.place;
+//			GVL.aLights[2] := FALSE;
+//		END_IF
+		
+//	E_MachineStates.place:
+//		GVL.aLights[3] := TRUE;
+//		IF GVL.aSwitches[4] THEN
+//			iState := E_MachineStates.inspect;
+//			GVL.aLights[3] := FALSE;
+//		END_IF
+	
+//	E_MachineStates.inspect:
+//	 	GVL.aLights[4] := TRUE;
+//		IF GVL.aSwitches[1] THEN
+//			iState := E_MachineStates.init;
+//			GVL.aLights[4] := FALSE;
+//		END_IF
+	
+//END_CASE
+
+CASE iState OF
+	
+	E_MachineStates.init:
+		GVL.aLights[1] := TRUE;
+
+		// Timer 1sec switch 1
+		ton1.IN := GVL.aSwitches[1];
+		ton1.PT	:= T#1S;
+		ton1();
+
+		IF ton1.Q THEN
+			iState := E_MachineStates.pick; 
+			GVL.aLights[1] := FALSE;
+		END_IF
+		
+	E_MachineStates.pick:
+		GVL.aLights[2] := TRUE;
+		
+		// Counter three times on switch 2
+		edgepos.CLK := gvl.aSwitches[2];
+		edgepos();
+		
+		IF  edgepos.Q THEN
+			switchCounter := switchCounter + 1;
+		END_IF
+		
+		IF switchCounter >= 3 THEN
+			iState := E_MachineStates.place;
+			GVL.aLights[2]  := FALSE;
+			switchCounter 	:= 0;
+		END_IF
+		
+	E_MachineStates.place:
+		GVL.aLights[3] := TRUE;
+		
+		// Switch 3 and 4
+		IF GVL.aSwitches[3] AND GVL.aSwitches[4] THEN
+			iState := E_MachineStates.inspect;
+			GVL.aLights[3] := FALSE;
+		END_IF
+	
+	E_MachineStates.inspect:
+	 	GVL.aLights[4] := TRUE;
+		
+		// All switches off 1sec
+		ton2.IN := NOT(GVL.aSwitches[1]) AND NOT(GVL.aSwitches[2]) AND NOT(GVL.aSwitches[3]) AND NOT(GVL.aSwitches[4]);
+		ton2.PT := T#1S;
+		ton2();
+		
+		IF ton2.Q THEN
+			iState := E_MachineStates.init;
+			GVL.aLights[4] := FALSE;
+		END_IF
+	
+END_CASE
+
+]]></ST>
+    </Implementation>
+    <LineIds Name="Case_Chase">
+      <LineId Id="49" Count="28" />
+      <LineId Id="7" Count="0" />
+      <LineId Id="79" Count="1" />
+      <LineId Id="111" Count="0" />
+      <LineId Id="81" Count="1" />
+      <LineId Id="132" Count="0" />
+      <LineId Id="117" Count="0" />
+      <LineId Id="112" Count="0" />
+      <LineId Id="118" Count="0" />
+      <LineId Id="113" Count="0" />
+      <LineId Id="119" Count="0" />
+      <LineId Id="83" Count="6" />
+      <LineId Id="120" Count="0" />
+      <LineId Id="133" Count="0" />
+      <LineId Id="146" Count="0" />
+      <LineId Id="151" Count="0" />
+      <LineId Id="154" Count="0" />
+      <LineId Id="121" Count="0" />
+      <LineId Id="125" Count="1" />
+      <LineId Id="157" Count="0" />
+      <LineId Id="90" Count="2" />
+      <LineId Id="131" Count="0" />
+      <LineId Id="93" Count="3" />
+      <LineId Id="134" Count="0" />
+      <LineId Id="136" Count="0" />
+      <LineId Id="97" Count="6" />
+      <LineId Id="137" Count="0" />
+      <LineId Id="144" Count="0" />
+      <LineId Id="138" Count="0" />
+      <LineId Id="141" Count="0" />
+      <LineId Id="143" Count="0" />
+      <LineId Id="139" Count="0" />
+      <LineId Id="104" Count="4" />
+      <LineId Id="78" Count="0" />
+      <LineId Id="110" Count="0" />
+      <LineId Id="109" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>
