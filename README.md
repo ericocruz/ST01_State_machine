@@ -1,4 +1,4 @@
-# ST01_State_machine
+# BECKHOFF_01_State_machine
 State Machine program using -Case- approach
 
 Author: Erico Cruz
